@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:meta_tube/utils/app_styles.dart';
 
 class CustomTextfield extends StatefulWidget {
   final int maxLength;
@@ -21,6 +23,28 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   }
   @override
   Widget build(BuildContext context) {
-    return TextField();
+    return TextField(
+      focusNode: _focusNode,
+      onEditingComplete: () => FocusScope.of(context).nextFocus(),
+      controller: widget.controller,
+      maxLength: widget.maxLength,
+      maxLines: widget.maxLines,
+      keyboardType: TextInputType.multiline,
+      cursorColor: AppTheme.accent,
+      style: AppTheme.inputStyle,
+      decoration: InputDecoration(
+        hintStyle: AppTheme.hintText,
+        hintText: widget.hintText,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppTheme.accent),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppTheme.medium
+          ),
+        ),
+        counterStyle: AppTheme.counter,
+      ),
+    );
   }
 }

@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             const SizedBox(height: 20),
-            CustomTextfield(maxLength: 100, maxLines: 3, hintText: 'Add Product Name', controller: titleController)
+            CustomTextfield(maxLength: 100, maxLines: 1, hintText: 'Add Product Name', controller: titleController)
           ],
         ),
       )
