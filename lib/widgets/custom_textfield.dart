@@ -21,6 +21,11 @@ class _CustomTextfieldState extends State<CustomTextfield> {
     _focusNode.dispose();
     super.dispose();
   }
+
+  void copyToClipboard (context, String text){
+    Clipboard.setData(ClipboardData(text: text));
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -51,10 +56,18 @@ class _CustomTextfieldState extends State<CustomTextfield> {
 
   IconButton _copyButton(BuildContext context) {
     return IconButton(
-      onPressed: () {},
-      color: AppTheme.accent,
+      onPressed: widget.controller.text.isEmpty ? () => copyToClipboard(context, widget.controller.text) : null,
       splashRadius: 20,
-      splashColor: AppTheme.light, // fix this later ###############################################################################################
+      style: ButtonStyle(
+      // Change splash color ONLY when clicked (not hover)
+      overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (states.contains(WidgetState.pressed)) {
+          return AppTheme.accent;  // your splash color here
+        }
+        return null; // default for hover/normal
+      }),
+    ),
+      color: AppTheme.accent,
       icon: const Icon(Icons.content_copy_rounded));
   }
 }
