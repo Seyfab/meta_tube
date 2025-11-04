@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meta_tube/utils/app_styles.dart';
+import 'package:meta_tube/utils/snackbar_utils.dart';
 
 class CustomTextfield extends StatefulWidget {
   final int maxLength;
@@ -24,6 +25,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
 
   void copyToClipboard (context, String text){
     Clipboard.setData(ClipboardData(text: text));
+    SnackbarUtils.showSnackbar(context, Icons.content_copy, 'Copied text');
   }
 
   @override

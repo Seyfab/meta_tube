@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController titleController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
+  final TextEditingController typecontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +34,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-            const SizedBox(height: 20),
-            CustomTextfield(maxLength: 100, maxLines: 1, hintText: 'Add Product Name', controller: titleController)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
+              children: [
+                Text(
+                  "Name:",
+                  style: TextStyle(
+                    color: AppTheme.light,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  child: CustomTextfield(maxLength: 100, maxLines: 1, hintText: 'Add Product', controller: titleController),
+                ),
+
+                SizedBox(width: 10),
+
+                Expanded(
+                  child: CustomTextfield(maxLength: 100, maxLines: 1, hintText: 'Product Price', controller: priceController)
+                ),
+
+                SizedBox(width: 10),
+
+                Expanded(
+                  child: CustomTextfield(maxLength: 100, maxLines: 1, hintText: 'Product Price', controller: typecontroller)
+                ),
+              ],
+            ),
           ],
         ),
       )
